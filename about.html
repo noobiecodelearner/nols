@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Notes on Learning Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Serif+Text&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: #000;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(220, 20, 60, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transform: translateY(-100%);
+            transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .navbar.slide-down {
+            transform: translateY(0);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .nav-left {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #DC143C;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-container a {
+            font-family: 'Inter', sans-serif;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-container a:hover {
+            color: #DC143C;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            margin-right: 200px;  
+        }
+
+        .post-header {
+            text-align: right;
+            margin-bottom: 60px;
+            padding-right: 40px;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #000;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .post-content {
+            padding: 40px;
+        }
+
+        .post-content p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            text-align: justify;
+        }
+
+        .fade-in-element {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .fade-in-element.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .post-header.fade-in-element {
+            transition: opacity 1.2s ease-out, visibility 1.2s ease-out;
+        }
+
+        footer {
+            font-family: 'Inter', sans-serif;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+                margin-right: 0;
+            }
+
+            .post-header {
+                padding-right: 0;
+                text-align: left;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .post-content {
+                padding: 40px 30px;
+            }
+
+            .post-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">Notes on Learning Systems</div>
+            <div class="nav-right">
+                <a href="index.html">Home</a>
+                <a href="recommended.html">Recommended Reading</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="post-header fade-in-element">
+            <h1>About</h1>
+        </header>
+
+        <article class="post-content">
+            <p class="fade-in-element">I'm Naeem Hossain. I work with machine learning systems and write to understand how they behave once they leave controlled settings and interact with the world.</p>
+
+            <p class="fade-in-element">My work sits between theory and practice. I'm interested in how models generalize, how and why they fail, and how design choices—data collection, objectives, infrastructure, and human feedback—shape what systems ultimately learn. Many of the most important failures in machine learning are not algorithmic; they are systemic.</p>
+
+            <p class="fade-in-element">This blog is a place to think in public about those systems. The essays here are not tutorials or product advice. They are attempts to reason clearly about learning systems as evolving entities: how they age, how they accumulate technical and conceptual debt, and how their behavior changes over time.</p>
+
+            <p class="fade-in-element">I use this space to connect ideas from machine learning, statistics, systems design, and the social context models operate in. Writing is part of how I test and refine these ideas.</p>
+        </article>
+
+        <footer>
+            <p>© Naeem Hossain</p>
+            <p>2026 Notes on Learning Systems</p>
+        </footer>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.add('slide-down');
+        });
+
+        const fadeElements = document.querySelectorAll('.fade-in-element');
+
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+    </script>
+</body>
+</html>

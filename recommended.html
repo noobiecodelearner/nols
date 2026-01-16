@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Reading - Notes on Learning Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Serif+Text&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: #000;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(220, 20, 60, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transform: translateY(-100%);
+            transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .navbar.slide-down {
+            transform: translateY(0);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .nav-left {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #DC143C;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-container a {
+            font-family: 'Inter', sans-serif;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-container a:hover {
+            color: #DC143C;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            margin-right: 200px;  
+        }
+
+        .post-header {
+            text-align: right;
+            margin-bottom: 60px;
+            padding-right: 40px;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #000;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .post-content {
+            padding: 40px;
+        }
+
+        .intro {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            font-style: italic;
+            text-align: justify;
+        }
+
+        .post-content h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .reading-item {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+            color: #1a1a1a;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .author {
+            font-weight: 600;
+            color: #000;
+        }
+
+        .separator {
+            margin: 0 6px;
+            color: #666;
+        }
+
+        .title {
+            font-style: italic;
+        }
+
+        .arrow {
+            margin: 0 8px;
+            color: #666;
+        }
+
+        .description {
+            color: #1a1a1a;
+        }
+
+        .note {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            margin-top: 50px;
+            font-style: italic;
+            color: #1a1a1a;
+            text-align: justify;
+        }
+
+        .fade-in-element {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .fade-in-element.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .post-header.fade-in-element {
+            transition: opacity 1.2s ease-out, visibility 1.2s ease-out;
+        }
+
+        footer {
+            font-family: 'Inter', sans-serif;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+                margin-right: 0;
+            }
+
+            .post-header {
+                padding-right: 0;
+                text-align: left;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .post-content {
+                padding: 40px 30px;
+            }
+
+            .reading-item {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">Notes on Learning Systems</div>
+            <div class="nav-right">
+                <a href="index.html">Home</a>
+                <a href="recommended.html">Recommended Reading</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="post-header fade-in-element">
+            <h1>Recommended Reading</h1>
+        </header>
+
+        <article class="post-content">
+            <p class="intro fade-in-element">These texts have shaped how I think about learning systems—not as isolated models, but as entities that evolve, fail, and interact with the world around them.</p>
+
+            <h2 class="fade-in-element">Learning as a System (Not an Algorithm)</h2>
+            <div class="reading-item fade-in-element">
+                <span class="author">Herbert A. Simon</span>
+                <span class="separator">—</span>
+                <span class="title">The Sciences of the Artificial</span>
+                <span class="arrow">→</span>
+                <span class="description">Intelligence as design under constraints, not optimization in a vacuum.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Norbert Wiener</span>
+                <span class="separator">—</span>
+                <span class="title">Cybernetics</span>
+                <span class="arrow">→</span>
+                <span class="description">Feedback, control, and communication as the substrate of learning systems.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Judea Pearl</span>
+                <span class="separator">—</span>
+                <span class="title">The Book of Why</span>
+                <span class="arrow">→</span>
+                <span class="description">Causality as a missing layer in purely statistical learning.</span>
+            </div>
+
+            <h2 class="fade-in-element">Failure, Generalization, and Distribution Shift</h2>
+            <div class="reading-item fade-in-element">
+                <span class="author">D. Sculley et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Hidden Technical Debt in Machine Learning Systems</span>
+                <span class="arrow">→</span>
+                <span class="description">Most failures don't come from models, but from the systems wrapped around them.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Benjamin Recht et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Do ImageNet Classifiers Generalize?</span>
+                <span class="arrow">→</span>
+                <span class="description">Benchmark success can mask brittleness in the real world.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Martin Arjovsky et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Invariant Risk Minimization</span>
+                <span class="arrow">→</span>
+                <span class="description">Generalization requires structure, not just data.</span>
+            </div>
+
+            <h2 class="fade-in-element">Representation, Geometry, and Structure</h2>
+            <div class="reading-item fade-in-element">
+                <span class="author">Mikhail Belkin et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Reconciling Modern Machine Learning and the Bias–Variance Tradeoff</span>
+                <span class="arrow">→</span>
+                <span class="description">Overparameterization changes how we should think about capacity and error.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Michael Bronstein et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Geometric Deep Learning</span>
+                <span class="arrow">→</span>
+                <span class="description">Inductive bias as geometry, not heuristics.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Yoshua Bengio et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Representation Learning: A Review</span>
+                <span class="arrow">→</span>
+                <span class="description">Good representations are the real engine of learning.</span>
+            </div>
+
+            <h2 class="fade-in-element">Humans, Infrastructure, and Feedback Loops</h2>
+            <div class="reading-item fade-in-element">
+                <span class="author">Selbst et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Fairness and Abstraction in Sociotechnical Systems</span>
+                <span class="arrow">→</span>
+                <span class="description">ML failures often arise from abstraction boundaries, not intent.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Saleema Amershi et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Guidelines for Human–AI Interaction</span>
+                <span class="arrow">→</span>
+                <span class="description">Model behavior changes once humans enter the loop.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Langdon Winner</span>
+                <span class="separator">—</span>
+                <span class="title">Do Artifacts Have Politics?</span>
+                <span class="arrow">→</span>
+                <span class="description">Technical systems encode values, whether we notice or not.</span>
+            </div>
+
+            <h2 class="fade-in-element">Evaluation, Metrics, and What We Choose to Measure</h2>
+            <div class="reading-item fade-in-element">
+                <span class="author">Amodei et al.</span>
+                <span class="separator">—</span>
+                <span class="title">Concrete Problems in AI Safety</span>
+                <span class="arrow">→</span>
+                <span class="description">Misaligned objectives reveal themselves only at scale.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Lipton & Steinhardt</span>
+                <span class="separator">—</span>
+                <span class="title">Troubling Trends in Machine Learning Scholarship</span>
+                <span class="arrow">→</span>
+                <span class="description">Benchmark chasing can distort scientific progress.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Hand</span>
+                <span class="separator">—</span>
+                <span class="title">Measurement Theory and Practice</span>
+                <span class="arrow">→</span>
+                <span class="description">What we measure determines what we think is improving.</span>
+            </div>
+
+            <h2 class="fade-in-element">Writing, Clarity, and Thinking Well (Meta)</h2>
+            <div class="reading-item fade-in-element">
+                <span class="author">Richard Feynman</span>
+                <span class="separator">—</span>
+                <span class="title">Cargo Cult Science</span>
+                <span class="arrow">→</span>
+                <span class="description">The appearance of rigor is not rigor.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">George Orwell</span>
+                <span class="separator">—</span>
+                <span class="title">Politics and the English Language</span>
+                <span class="arrow">→</span>
+                <span class="description">Clear thinking begins with clear writing.</span>
+            </div>
+            <div class="reading-item fade-in-element">
+                <span class="author">Paul Graham</span>
+                <span class="separator">—</span>
+                <span class="title">Essays (selected)</span>
+                <span class="arrow">→</span>
+                <span class="description">Writing as a tool for discovering what you actually believe.</span>
+            </div>
+
+            <p class="note fade-in-element">This list is not exhaustive. It evolves as my thinking does.</p>
+        </article>
+
+        <footer>
+            <p>© Naeem Hossain</p>
+            <p>2026 Notes on Learning Systems</p>
+        </footer>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.add('slide-down');
+        });
+
+        const fadeElements = document.querySelectorAll('.fade-in-element');
+
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+    </script>
+</body>
+</html>

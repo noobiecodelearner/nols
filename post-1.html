@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Feedback Loop Paradox - Notes on Learning Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Serif+Text&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: #000;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(220, 20, 60, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transform: translateY(-100%);
+            transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .navbar.slide-down {
+            transform: translateY(0);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .nav-left {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #DC143C;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-container a {
+            font-family: 'Inter', sans-serif;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-container a:hover {
+            color: #DC143C;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            margin-right: 200px;  
+        }
+
+        .post-header {
+            text-align: right;
+            margin-bottom: 60px;
+            padding-right: 40px;
+        }
+
+        .post-date {
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #000;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .post-content {
+            padding: 40px;
+        }
+
+        .post-content p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            text-align: justify;
+        }
+
+        .post-content h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .post-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #DC143C;
+        }
+
+        .post-content ul {
+            margin-bottom: 10px;
+            padding-left: 40px;
+        }
+
+        .post-content li {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .fade-in-element {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .fade-in-element.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .post-header.fade-in-element {
+            transition: opacity 1.2s ease-out, visibility 1.2s ease-out;
+        }
+
+        footer {
+            font-family: 'Inter', sans-serif;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+                margin-right: 0;
+            }
+
+            .post-header {
+                padding-right: 0;
+                text-align: left;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .post-content {
+                padding: 40px 30px;
+            }
+
+            .post-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">Notes on Learning Systems</div>
+            <div class="nav-right">
+                <a href="index.html">Home</a>
+                <a href="recommended.html">Recommended Reading</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="post-header fade-in-element">
+            <div class="post-date">January 10, 2026</div>
+            <h1>The Engineering Tradeoffs We Don't Teach in Machine Learning</h1>
+        </header>
+
+        <article class="post-content">
+            <p class="fade-in-element">Machine learning education has never been stronger. Students graduate fluent in optimization, architectures, and evaluation metrics. They know how to tune models, scale training, and beat benchmarks. Yet when these same systems are deployed in the real world, they often behave in ways that surprise—even alarm—their creators.</p>
+
+            <p class="fade-in-element">The reason is not that the models are poorly trained. It's that machine learning is rarely taught as a systems discipline. What gets left out are the tradeoffs that only appear once models interact with people, institutions, incentives, and time.</p>
+
+            <p class="fade-in-element">These omissions matter. Increasingly, machine learning systems are not standalone predictors but components embedded in decision loops. They influence behavior, reshape environments, and adapt alongside the very processes they are meant to model. In these settings, performance alone is a weak guarantee.</p>
+
+            <p class="fade-in-element">What follows is not a critique of machine learning theory or practice, but an argument that our educational focus is incomplete. To build reliable ML systems, we need to teach the engineering tradeoffs that arise after training ends.</p>
+
+            <h2 class="fade-in-element">Coupling: When Models Stop Being Independent</h2>
+
+            <p class="fade-in-element">Most machine learning courses implicitly assume that models operate independently of the systems around them. Data is sampled, a model is trained, predictions are made, and performance is evaluated. The environment is treated as static.</p>
+
+            <p class="fade-in-element">In real deployments, this assumption collapses quickly.</p>
+
+            <p class="fade-in-element">Models become coupled to the systems they influence. A recommendation model changes what users see, which changes what they click, which changes future training data. A risk model affects who receives scrutiny, which alters behavior in response to that scrutiny. Over time, the model and its environment co-evolve.</p>
+
+            <p class="fade-in-element">This coupling introduces feedback loops that are rarely discussed in classrooms. A small modeling bias can amplify itself. A conservative prediction can make the world more conservative. A corrective intervention can distort the signal it was meant to improve.</p>
+
+            <p class="fade-in-element">These dynamics are not bugs in the code. They are properties of the system. Yet students are often trained to reason about models as if they were isolated components, evaluated once and then frozen in place.</p>
+
+            <p class="fade-in-element">The tradeoff here is subtle: tighter coupling can improve short-term performance but reduce long-term reliability. Looser coupling can preserve stability but limit responsiveness. Without understanding this balance, engineers may optimize exactly the wrong thing.</p>
+
+            <h2 class="fade-in-element">Incentives: Optimizing the Wrong Objective</h2>
+
+            <p class="fade-in-element">Loss functions are explicit. Incentives are not.</p>
+
+            <p class="fade-in-element">In practice, machine learning systems optimize objectives that sit inside larger organizational and social incentive structures. A model trained to maximize engagement may indirectly reward outrage. A model designed to reduce cost may quietly shift risk elsewhere. A system optimized for speed may degrade oversight.</p>
+
+            <p class="fade-in-element">These effects are rarely visible in evaluation metrics. They emerge only when models interact with human goals and institutional pressures.</p>
+
+            <p class="fade-in-element">What's missing in most ML education is a discussion of incentive alignment. Not in the abstract sense of AI safety, but in the practical sense of how models reshape human decision-making. When a system becomes authoritative, people adapt to it. When metrics determine rewards, behavior follows the metric.</p>
+
+            <p class="fade-in-element">The tradeoff is unavoidable: optimizing for measurable objectives simplifies engineering but risks misalignment with real-world goals. Teaching students to recognize this tension—and to anticipate second-order effects—would prevent many downstream failures.</p>
+
+            <h2 class="fade-in-element">Feedback: Learning Changes the Data</h2>
+
+            <p class="fade-in-element">Machine learning pipelines are often presented as linear: collect data, train model, deploy, repeat. But deployment itself changes the data-generating process.</p>
+
+            <p class="fade-in-element">This creates a fundamental challenge. Feedback from the system contaminates the very signals used to evaluate and improve it. Success can make learning harder. Failure can hide itself.</p>
+
+            <p class="fade-in-element">Consider a model that filters content, flags anomalies, or prioritizes cases for human attention. Over time, the data it sees becomes a reflection of its own decisions. Blind spots widen. Apparent performance improves, even as coverage narrows.</p>
+
+            <p class="fade-in-element">This is not easily fixed by better algorithms. It is a structural problem. Feedback loops are intrinsic to systems that act on the world they measure.</p>
+
+            <p class="fade-in-element">The tradeoff here lies between adaptability and observability. Highly adaptive systems respond quickly but distort feedback. More passive systems preserve signal but sacrifice responsiveness. Neither is universally correct—but the choice should be explicit.</p>
+
+            <p class="fade-in-element">Yet most curricula stop at cross-validation, as if future data were an unbiased continuation of the past.</p>
+
+            <h2 class="fade-in-element">Human Adaptation: Models Change Behavior</h2>
+
+            <p class="fade-in-element">Perhaps the most under-taught tradeoff is the simplest: people respond to systems that affect them.</p>
+
+            <p class="fade-in-element">Once a model's outputs matter, humans adapt. They learn how decisions are made, adjust their behavior accordingly, and sometimes game the system outright. This is not malicious—it is rational.</p>
+
+            <p class="fade-in-element">Machine learning models, however, are typically trained on historical data that reflects pre-deployment behavior. Once deployed, that data distribution shifts, not because the world changed randomly, but because people changed deliberately.</p>
+
+            <p class="fade-in-element">This adaptation undermines many assumptions about generalization. A model that performed well under passive observation may fail under strategic interaction.</p>
+
+            <p class="fade-in-element">The engineering tradeoff is stark: transparency improves trust but can accelerate gaming. Opacity reduces manipulation but erodes accountability. There is no universal solution—only context-dependent design choices.</p>
+
+            <p class="fade-in-element">Teaching this tradeoff would help engineers move beyond naive expectations of static environments.</p>
+
+            <h2 class="fade-in-element">Scale: When Bigger Becomes Harder to Control</h2>
+
+            <p class="fade-in-element">Scaling models often improves performance. It also magnifies failure modes.</p>
+
+            <p class="fade-in-element">Large models are harder to inspect, harder to reason about, and harder to correct once deployed. Small errors can propagate widely. Decisions become centralized. Human oversight becomes symbolic rather than practical.</p>
+
+            <p class="fade-in-element">The tradeoff between scale and controllability is rarely emphasized. Students are taught that bigger models are better models. Less attention is paid to the cost of intervening when something goes wrong.</p>
+
+            <p class="fade-in-element">In real systems, the ability to localize failures, isolate components, and understand causality often matters more than marginal gains in accuracy. These concerns fall squarely in the domain of engineering—but they are often absent from ML training.</p>
+
+            <h2 class="fade-in-element">Evaluation: When Metrics Lag Reality</h2>
+
+            <p class="fade-in-element">Most machine learning education revolves around evaluation. Yet the metrics used are often proxies for what we actually care about.</p>
+
+            <p class="fade-in-element">Accuracy, precision, recall, and loss functions are clean, quantifiable, and convenient. But they lag behind real-world outcomes. By the time a metric reveals a problem, the system may already be deeply embedded.</p>
+
+            <p class="fade-in-element">The tradeoff is between measurability and meaning. Easy-to-measure signals are often weak indicators of long-term impact. Strong indicators are often delayed, noisy, or qualitative.</p>
+
+            <p class="fade-in-element">This gap encourages overconfidence. Engineers see green dashboards and assume all is well, even as subtle degradation accumulates.</p>
+
+            <p class="fade-in-element">Teaching students to be skeptical of metrics—to ask what they miss, not just what they capture—would foster healthier deployment practices.</p>
+
+            <h2 class="fade-in-element">Why These Tradeoffs Stay Invisible</h2>
+
+            <p class="fade-in-element">None of these tradeoffs are mysterious. Engineers encounter them repeatedly in practice. So why are they so absent from formal education?</p>
+
+            <p class="fade-in-element">Part of the answer is that these issues resist clean abstraction. They don't fit neatly into problem sets or leaderboards. They emerge slowly, often outside the lab, and depend on context.</p>
+
+            <p class="fade-in-element">Another reason is cultural. Machine learning evolved from statistics and optimization, not systems engineering. As a result, we teach what we can formalize, not what we can't.</p>
+
+            <p class="fade-in-element">But as ML systems become infrastructure—embedded in finance, healthcare, energy, and governance—this imbalance becomes risky.</p>
+
+            <h2 class="fade-in-element">Toward a More Complete ML Education</h2>
+
+            <p class="fade-in-element">Teaching these tradeoffs does not require abandoning mathematical rigor or algorithmic innovation. It requires broadening the frame.</p>
+
+            <p class="fade-in-element">Students should be encouraged to ask:</p>
+
+            <ul class="fade-in-element">
+                <li>How does this model change the system it operates in?</li>
+                <li>What feedback loops does it create?</li>
+                <li>Who adapts, and how?</li>
+                <li>What happens when incentives shift?</li>
+                <li>Where does performance mask fragility?</li>
+            </ul>
+
+            <p class="fade-in-element">These are engineering questions, not philosophical ones. They determine whether a system remains reliable over time.</p>
+
+            <p class="fade-in-element">Machine learning has matured technically. The next step is to mature institutionally—to recognize that models do not exist in isolation, and neither should the way we teach them.</p>
+
+            <p class="fade-in-element">If we want ML systems that work in the real world, we need to teach the tradeoffs that only appear once they leave the classroom.</p>
+        </article>
+
+        <footer>
+            <p>© Naeem Hossain</p>
+            <p>2026 Notes on Learning Systems</p>
+        </footer>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.add('slide-down');
+        });
+
+        const fadeElements = document.querySelectorAll('.fade-in-element');
+
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+    </script>
+</body>
+</html>
